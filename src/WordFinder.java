@@ -43,7 +43,6 @@ public class WordFinder {
             boolean hasReqLetter = false;
             boolean isValid = true;
             for (char wordChar : word.toCharArray()) {
-
                 boolean isValidLetter = false;
                 for (char letter : letters ) {
                     if (letter == wordChar) isValidLetter = true;
