@@ -9,24 +9,28 @@ public class WordFinder {
     ArrayList<String> words = new ArrayList<String>();
     char[] letters = new char[7];
 
+    String path = App.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    File jarFile = new File(path);
+    String jarDir = jarFile.getParentFile().getAbsolutePath();
+
+    long startTime = System.currentTimeMillis();
+
     public WordFinder(char[] letters) {
         this.letters = letters;
 
         int count = 0;
         try {
-            File file = new File("lexicon.txt");
+            File file = new File(jarDir+"/lexicon.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 ALL_WORDS[count] = scanner.nextLine().toLowerCase();
                 count++;
             }
             scanner.close();
+            FindPassingWords();
         } catch (FileNotFoundException e) {
-            System.out.println("!! Could not find file !!");
             new ErrorWindow("Could not find words file");
         }
-
-        FindPassingWords();
 
     }
 
@@ -57,7 +61,7 @@ public class WordFinder {
 
         }
 
-        new WordsGUI(words);
+        new WordsGUI(words, System.currentTimeMillis() - startTime);
 
     }
 

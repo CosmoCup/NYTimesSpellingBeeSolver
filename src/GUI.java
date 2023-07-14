@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,13 +14,17 @@ public class GUI implements ActionListener {
     JTextField[] letterFields = new JTextField[7];
     
     public GUI() {
-
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         frame.setTitle("Spelling Bee Shit");
         frame.add(panel);
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();  
+        Dimension screenSize = toolkit.getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;  
+        int y = (screenSize.height - frame.getHeight()) / 2;  
+        frame.setLocation(x, y);  
 
         panel.setLayout(null);
 
